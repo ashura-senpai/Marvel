@@ -24,7 +24,6 @@ routes.get('/quadrinhos/:id', ComicController.FindIdComic)
 routes.put('/quadrinhos/:id', ComicController.UpdateComic)
 routes.delete('/quadrinhos/:id', ComicController.DeleteComic)
 
-
 export {
     routes
 }
