@@ -18,7 +18,7 @@ class ComicController {
             return res.send(Comic);
         } catch (error) {
             console.error('Erro no controller:', error);
-            return res.status(500).json({ message: 'Erro ao Criar Criador' });
+            return res.status(500).json({ message: 'Erro ao Criar Quadrinho' });
         }
       }
   
@@ -28,7 +28,7 @@ class ComicController {
               return res.send(creator)
           } catch (error){
               console.error(error)
-              return res.status(500).json({ message: 'Erro ao achar Criador'})
+              return res.status(500).json({ message: 'Erro ao achar Quadrinho'})
           }
       }
   
@@ -38,7 +38,7 @@ class ComicController {
               return res.send(Comic);
           } catch (error) {
               console.error('Erro no controller:', error);
-              return res.status(500).json({ message: 'Erro ao atualizar Criador' });
+              return res.status(500).json({ message: 'Erro ao atualizar Quadrinho' });
           }
         }
     
@@ -48,9 +48,19 @@ class ComicController {
               return res.status(200).json("Deletado com sucesso");
           } catch (error) {
               console.error('Erro no controller:', error);
-              return res.status(500).json({ message: 'Erro ao deletar Criador' });
+              return res.status(500).json({ message: 'Erro ao deletar Quadrinho' });
           }
         }
+        
+        async CountComic(req: Request, res: Response) {
+            try {
+                const Comic = await ComicService.CountComic();
+                return res.status(200).json({ message: `Quantidade de quandrinho encontrado: ${Comic}`})
+            } catch (error) {
+                console.error('Erro no controller:', error);
+                return res.status(500).json({ message: 'Erro ao achar Quadrinho' });
+            }
+          }
 }
 
 export default new ComicController()

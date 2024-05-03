@@ -10,10 +10,9 @@ class ComicService {
     async Comics() {
         const comics = await axios.get(`${this.baseURL}/series/15305/comics?limit=60&ts=2&apikey=${this.apiPublicKey}&hash=${this.hash}`)
         const comicsData = comics.data.data.results
-        const focDate = comicsData.dates
         
 
-        comicsData.forEach(async (comics: Comic) => {
+        comicsData.forEach(async (comics: Comic) => { 
             try {
                 const thumbnailUrl = `${comics.thumbnail.path}.${comics.thumbnail.extension}`
                 const dates = comics.dates
@@ -71,7 +70,14 @@ class ComicService {
         }
       }
   
-
+      async CountComic(){
+        try{
+          const count = await Comics.countDocuments({})
+          return count
+        } catch (error) {
+          throw new Error(`Erro ao contar quantidade Comic: ${error}`)
+        }
+      }
 }
 
 

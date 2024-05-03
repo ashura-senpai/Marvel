@@ -17,7 +17,7 @@ class CharacterController {
     async CreateCharacter(req: Request, res: Response) {
       try {
           const character = await CharacterMarvelService.Create(req.body);
-          return res.send(character);
+          return res.status(201).send(character);
       } catch (error) {
           console.error('Erro no controller:', error);
           return res.status(500).json({ message: 'Erro ao Criar Heroi' });
@@ -52,6 +52,17 @@ class CharacterController {
           console.error('Erro no controller:', error);
           return res.status(500).json({ message: 'Erro ao deletar Heroi' });
       }
+    }
+
+    async SearchCharacter(req: Request, res: Response) {
+        try {
+            const name = req.params.name;
+            const character = await CharacterMarvelService.SearchHero(name);
+            return res.send(character);
+        } catch (error) {
+            console.error('Erro no controller:', error);
+            return res.status(500).json({ message: 'Erro ao deletar Heroi' });
+        }
     }
 }
 

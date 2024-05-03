@@ -65,6 +65,27 @@ class CreatorController {
         }
       }
 
+      async SearchCreatorSeries(req: Request, res: Response) {
+        try {
+            const names = req.params.name;
+            const filteredCreators = await CreatorService.SearchCreatorSeries(names);
+            return res.send(filteredCreators);
+        } catch (error) {
+            console.error('Erro no controller:', error);
+            return res.status(500).json({ message: 'Erro ao Filtrar' });
+        }
+      }
+
+      async SearchCreator(req: Request, res: Response) {
+            try {
+                const name = req.params.name;
+                const creator = await CreatorService.SearchCreator(name);
+                return res.send(creator);
+            } catch (error) {
+                console.error('Erro no controller:', error);
+                return res.status(500).json({ message: 'Erro ao deletar Heroi' });
+            }
+        }
 }
 
 export default new CreatorController()

@@ -63,7 +63,7 @@ class CharacterMarvelService {
     
     async SearchHero(name: String){
       try{
-        const existsHero = await CharacterMarvel.exists({ name: name })
+        const existsHero = await CharacterMarvel.find({ name: name })
         return existsHero
       } catch (error) {
         throw new Error(`Erro ao buscar Heroi no API: ${error}`)

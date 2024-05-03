@@ -115,6 +115,25 @@ class CreatorService {
         throw new Error(`Erro ao Filtrar pela Função: ${error}`);
       }
     }
+
+    async SearchCreatorSeries(name: String) {
+      try{
+        const search = await creatorSchema.findOne({ name: name}, 'series -_id');
+        return search?.series;
+      } catch (error) {
+        throw new Error(`Erro ao buscar as seríes do criador: ${error}`);
+      }
+    }
+
+    async SearchCreator(name: String){
+      try{
+        const existsCreator = await creatorSchema.find({ name: name })
+        return existsCreator
+      } catch (error) {
+        throw new Error(`Erro ao buscar Criadores no API: ${error}`)
+      }
+    }
+
 }
 
 
