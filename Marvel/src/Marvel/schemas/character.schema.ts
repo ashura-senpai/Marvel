@@ -4,7 +4,7 @@ const characterMarvel = new Schema({
     id_hero: Number,
     name: String,
     description: String,
-    thumbnail:String
+    thumbnail: String
 }, { timestamps: true });
 
 export default model("CharacterMarvel", characterMarvel)
